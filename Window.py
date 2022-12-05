@@ -1,3 +1,4 @@
+#Nathan Aguiar  Project 6
 import random
 
 import arcade
@@ -12,7 +13,7 @@ class Window(arcade.Window):
        # self.sound = None
         self.player_dx = 0
         self.player_dy = 0
-        self.arrow = 0
+        self.arrow = arcade.Sprite("ImagesForClass/ball-magenta.png")
         self.arrows = arcade.SpriteList()
 
     def setup(self):
@@ -25,15 +26,15 @@ class Window(arcade.Window):
             self.target.center_x = random.randint(200, 997)
             self.target.center_y = random.randint(925, 997)
             self.targets.append(self.target)
-        for arrow in range(5):
+        for arrow in range(0):
             self.arrow = arcade.Sprite("ImagesForClass/ball-magenta.png")
             self.arrows.append(self.arrow)
 
 
 
     def on_update(self, time_since_update):
-        enemy_collision = arcade.check_for_collision_with_lists(self.arrow, self.targets)
-        enemy_kill = arcade.check_for_collision_with_lists(self.player, self.targets)
+        #enemy_collision = arcade.check_for_collision_with_list(self.arrow, self.targets)
+        #enemy_kill = arcade.check_for_collision_with_list(self.player, self.targets)
         self.player.center_x += self.player_dx
         if self.player.center_x > 1200:
             self.player.center_x = 0
@@ -55,21 +56,22 @@ class Window(arcade.Window):
                 enemy.center_y = 1000
             enemy.center_x += random.randint(0, 0)
         for arrow in self.arrows:
-            arrow.center_y -= self.player.center_y
-            if arrow.center_y <= 0:
-                arrow.center_y = 1000
+            #arrow.center_y = self.player.center_y
+            #if arrow.center_y <= 0:
+            arrow.center_y += 30
+            enemy_collision = arcade.check_for_collision_with_list(self.target, self.arrows)
             if enemy_collision:
                     #arcade.play_sound(self.sound)
                     self.score = len(enemy_collision)
-            if enemy_kill:
+            #if enemy_kill:
                 #arcade.play_sound(self.sound)
-                arcade.draw_text(f"You Lose!!", 450, 470,
-                                 arcade.color.BLACK, 150)
-                exit()
-            if self.score == '20':
+              #  arcade.draw_text(f"You Lose!!", 450, 470,
+                       #          arcade.color.BLACK, 150)
+               # exit()
+           # if self.score == '20':
                 # arcade.play_sound(self.sound)
-                arcade.draw_text(f"You Win!!!", 450, 470,
-                                 arcade.color.BLACK, 150)
+              #  arcade.draw_text(f"You Win!!!", 450, 470,
+                       #          arcade.color.BLACK, 150)
 
 
     def on_draw(self):
