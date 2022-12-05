@@ -11,8 +11,3 @@ def main():
     arcade.run()
 
 main()
-
-#def on_mouse_motion (self, x, y, dx, dy)
-#self.ship.center_x = x
-#self.ship.center_y = y
-#This'll make the mouse your movement control thingy
