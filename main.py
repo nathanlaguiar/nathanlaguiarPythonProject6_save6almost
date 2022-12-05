@@ -2,7 +2,11 @@
 import arcade
 
 import Window
-#from Comp151Window import Comp151Window
+
+#Left and right to move
+#X to shoot
+# If enemies are close enough you might hit two with the same shot.
+
 
 def main():
     our_window = Window.Window(
