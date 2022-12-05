@@ -56,19 +56,21 @@ class Window(arcade.Window):
                 enemy.center_y = 1000
             enemy.center_x += random.randint(0, 0)
         for arrow in self.arrows:
+            enemy_collision = arcade.check_for_collision_with_list(self.target, self.arrows)
             #arrow.center_y = self.player.center_y
             #if arrow.center_y <= 0:
             arrow.center_y += 30
-            enemy_collision = arcade.check_for_collision_with_list(self.target, self.arrows)
             if enemy_collision:
                     #arcade.play_sound(self.sound)
-                    self.score = len(enemy_collision)
+                    self.score += len(enemy_collision)
+                    for enemy_down in enemy_collision:
+                            self.arrows.remove(self.targets)
             #if enemy_kill:
                 #arcade.play_sound(self.sound)
               #  arcade.draw_text(f"You Lose!!", 450, 470,
                        #          arcade.color.BLACK, 150)
                # exit()
-           # if self.score == '20':
+           # if self.score == 20:
                 # arcade.play_sound(self.sound)
               #  arcade.draw_text(f"You Win!!!", 450, 470,
                        #          arcade.color.BLACK, 150)
